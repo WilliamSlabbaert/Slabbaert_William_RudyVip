@@ -1,0 +1,20 @@
+Porsche;Cayenne Limousine;White;310;1500;1200;1600
+Porsche;Cayenne Limousine;Electric Blue;350;1600;1300;1750
+Mercedes;SL 55 AMG;Silver;225;n.v.t.;700;1000
+Tesla;Model X;White;600;n.v.t.;2500;2700
+Tesla;Model S;White;500;n.v.t.;2000;2200
+Porsche;Cayenne Limousine;White;300;1500;1000;n.v.t.
+Porsche;Cayenne Limousine;White;300;1500;1000;n.v.t.
+Porsche;Cayenne Limousine;White;300;1500;1000;n.v.t.
+Porsche;Cayenne Limousine;White;300;1500;1000;n.v.t.
+Porsche;Cayenne Limousine;White;300;1500;1000;n.v.t.
+Lincoln;XXL Navigator Limousine;White;255;790;650;950
+Lincoln;Limousine;Pink;180;900;500;1000
+Lincoln;Limousine;Black;195;850;600;1000
+Hummer;Limousine;Yellow;225;1290;790;1500
+Hummer;Limousine;Black;195;990;n.v.t;1100
+Hummer;Limousine;White;195;990;n.v.t;n.v.t
+Chrysler;300C Sedan;White;175;n.v.t;450;600
+Chrysler;300C Sedan;Black;175;n.v.t;450;600
+Chrysler;300C Limousine;White;175;800;500;1000
+Chrysler;300C Limousine;Tuxedo Crème;180;800;600;n.v.t

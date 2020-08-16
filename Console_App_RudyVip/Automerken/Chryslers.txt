@@ -1,0 +1,4 @@
+Chrysler;300C Sedan;White;175;n.v.t;450;600
+Chrysler;300C Sedan;Black;175;n.v.t;450;600
+Chrysler;300C Limousine;White;175;800;500;1000
+Chrysler;300C Limousine;Tuxedo Crème;180;800;600;n.v.t

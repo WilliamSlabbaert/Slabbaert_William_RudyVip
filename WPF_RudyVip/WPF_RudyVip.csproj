@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="329-3295609_mechanic-clipart-automobile-engineer-vector-cars-logo-png - kopie.png" />
+    <None Remove="329-3295609_mechanic-clipart-automobile-engineer-vector-cars-logo-png.png" />
+    <None Remove="Background.jpg" />
+    <None Remove="Background1.jpg" />
+    <None Remove="Home-icon.svg.png" />
+    <None Remove="IconLogo.png" />
+    <None Remove="IconLogo2.png" />
+    <None Remove="Logo.png" />
+    <None Remove="Logo2.png" />
+    <None Remove="Logo5.PNG" />
+    <None Remove="Trash2.png" />
+    <None Remove="TrashcanDelete.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="1.2.6" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Console_App_RudyVip\Console_App_RudyVip.csproj" />
+    <ProjectReference Include="..\DataLayer_RudyVip\DataLayer_RudyVip.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Background.jpg" />
+    <Resource Include="Background1.jpg" />
+    <Resource Include="Home-icon.svg.png" />
+    <Resource Include="IconLogo2.png" />
+    <Resource Include="Logo5.PNG" />
+    <Resource Include="Trash2.png" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,291 @@
+﻿<Window x:Class="WPF_RudyVip.Cars"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_RudyVip"
+        mc:Ignorable="d"
+        Title="Cars" Height="450" Width="800"
+        ResizeMode="NoResize"
+        Icon="/IconLogo2.PNG"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        >
+
+    <Window.Resources>
+
+        <VisualBrush x:Key="SearchHint" TileMode="None" Stretch="None" AlignmentX="Left">
+            <VisualBrush.Transform>
+                <TranslateTransform X="5" Y="0" />
+            </VisualBrush.Transform>
+            <VisualBrush.Visual>
+                <Grid>
+                    <TextBlock FontStyle="Italic" Foreground="#DDFFFFFF" Opacity="0.3" Text="€…"/>
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+        <VisualBrush x:Key="TextHint" TileMode="None" Stretch="None" AlignmentX="Left">
+            <VisualBrush.Transform>
+                <TranslateTransform X="5" Y="0" />
+            </VisualBrush.Transform>
+            <VisualBrush.Visual>
+                <Grid>
+                    <TextBlock FontStyle="Italic" Foreground="#DDFFFFFF" Opacity="0.3" Text="…"/>
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+        <Style TargetType="Button" x:Key="HomeBtn">
+            <Setter Property="Background" Value="#FF0081D0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5ebcff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RoundDeleteCorner" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#cc0000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RoundUpdateCorner" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#ffe75e"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ffcc00"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="FlatButtonStyle">
+            <Setter Property="Background" Value="#FF5EFF8E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="185"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontFamily" Value="Segoe UI Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#63eb57"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CheckUpdateCorner" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#00fcd2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#00dbb7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+
+    <Grid Background="#FF0081D0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="139*" />
+            <ColumnDefinition Width="176*" />
+            <ColumnDefinition Width="413*" />
+            <ColumnDefinition Width="72*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <Rectangle HorizontalAlignment="Left" Height="584" VerticalAlignment="Top" Width="129" Fill="#FF0072B7" Grid.RowSpan="2"/>
+        <Rectangle HorizontalAlignment="Center" Height="84" VerticalAlignment="Top" Width="315" Grid.ColumnSpan="2" Fill="White" Stroke="White" OpacityMask="White" Grid.RowSpan="2"/>
+        <DataGrid x:Name="CarDataGrid" Loaded="Load_CarData" Grid.Column="2" Background="White" IsReadOnly="True" Grid.Row="1"/>
+        <StackPanel Margin="9,75,9,-6" Grid.Row="1">
+            <Label Visibility="Collapsed" Name="IDLabel"  Margin="2" Content="ID" FontWeight="Bold" FontSize="15" />
+            <Label Margin="2" Content="Brand" FontWeight="Bold" FontSize="15" />
+            <Label Margin="2" Content="Model" FontWeight="Bold" FontSize="15" />
+            <Label Margin="2" Content="Color" FontWeight="Bold" FontSize="15"/>
+            <Label Margin="2" Content="FirstPrice" FontWeight="Bold" FontSize="15" />
+            <Label Margin="2" Content="NightLifePrice" FontWeight="Bold" FontSize="15" />
+            <Label Margin="2" Content="WeddingPrice" FontWeight="Bold" FontSize="15" />
+            <Label Margin="2" Content="WellnessPrice" FontWeight="Bold" FontSize="15" />
+        </StackPanel>
+        <StackPanel Margin="5,10,0,9" Grid.Column="3" Grid.Row="1">
+            <Button x:Name="DeleteBtn" Click="Delete_Item" ToolTip="Delete selected item" Style="{DynamicResource RoundDeleteCorner}" Margin="5" Grid.Column="3" Height="50" VerticalAlignment="Top">
+                <Image Source="/Trash2.png" Height="30" Width="30" Stretch="Uniform" />
+            </Button>
+            <Button x:Name="UpdateBtn" Click="Update_Item" ToolTip="Update selected item" Style="{DynamicResource RoundUpdateCorner}" Margin="5" Grid.Column="3" Height="50" VerticalAlignment="Top" Grid.RowSpan="2">
+                <Image Source="C:\Users\willi\Desktop\HoGent\Programmeren\Slabbaert_William_RudyVip\WPF_RudyVip\Gear.png" Height="30" Width="30" Stretch="Uniform" />
+            </Button>
+            <Button Click="Check_Update" ToolTip="Available / Unavailable" Style="{DynamicResource CheckUpdateCorner}" Margin="5" Grid.Column="3" Height="50" VerticalAlignment="Top" Grid.RowSpan="2">
+                <Image Source="C:\Users\willi\Desktop\HoGent\Programmeren\Slabbaert_William_RudyVip\WPF_RudyVip\Images\checkmark.png" Height="30" Width="30" Stretch="Uniform" />
+            </Button>
+        </StackPanel>
+        <Button ToolTip="Go mainwindow" Style="{DynamicResource HomeBtn}" x:Name="HomeBtn" Loaded="HomeBtn_Loaded" Grid.Column="0" Height="50" VerticalAlignment="Top" Margin="10,5,79,0" Click="HomeBtn_Click" BorderBrush="#FFE88909" Grid.Row="1">
+            <Image  Height="30" Width="30" >
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="/Home-icon.svg.png"/>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Button>
+        <Label Content="Car Overview" HorizontalAlignment="Left" Margin="71,8,0,0" VerticalAlignment="Top" Width="173" FontWeight="Bold" FontSize="25" Height="44" Foreground="Black" Grid.ColumnSpan="2" Grid.Row="1" FontFamily="Segoe UI Black"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,75,6,25">
+            <Label Name="IDInput" Visibility="Collapsed" Content="0"  FontSize="10" Height="22" Margin="0,5"/>
+            <TextBox Name="BrandInpt" Margin="0,5" MaxLength="19" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}" MaxWidth="170">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource TextHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox  Name="ModelInpt" Margin="0,3" MaxLength="19" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource TextHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox  Name="ColorInpt" Margin="0,7" MaxLength="19" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource TextHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox  Name="FirstInpt" PreviewTextInput="NumberValidationTextBox" Margin="0,5"  MaxLength="19" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource SearchHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox  Name="NightInpt" PreviewTextInput="NumberValidationTextBox" Margin="0,3" MaxLength="19" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource SearchHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox  Name="WeddingInpt"  PreviewTextInput="NumberValidationTextBox" Margin="0,8" MaxLength="19" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource SearchHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox Name="WellnessInpt" PreviewTextInput="NumberValidationTextBox"  MaxLength="19" Margin="0,3" TextWrapping="Wrap" FontSize="15" BorderBrush="{x:Null}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource SearchHint}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button x:Name="AddBtn" Style="{StaticResource FlatButtonStyle}" Margin="0,15" Content="Add Car" Click="Add_NewCar" BorderBrush="#FF5EFF8E" Width="166"  />
+            <Button Style="{StaticResource FlatButtonStyle}" Margin="0,15" Content="Update Car" Click="Add_UpdatedCar" BorderBrush="#FF5EFF8E" Width="166" x:Name="AddUpdate" Visibility="Collapsed" />
+        </StackPanel>
+        <Grid Grid.Row="0"  >
+            <Border MouseDown="Window_MouseDown" Background="#FFD1D1D1" Margin="0,0,-661,0">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Margin="770,0,0,0"  Width="10" Height="10" FontSize="10" Background="#FFFFD553" BorderBrush="#FFFFD553" Click="MinimizeButton" />
+                    <Button Margin="5,0,0,0" Width="10" Height="10" FontSize="10" Background="Red" BorderBrush="Red" Click="ExitButton"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+    </Grid>
+
+</Window>

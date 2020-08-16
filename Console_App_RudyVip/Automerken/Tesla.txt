@@ -1,0 +1,2 @@
+Tesla;Model X;White;600;n.v.t.;2500;2700
+Tesla;Model S;White;500;n.v.t.;2000;2200
