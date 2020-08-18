@@ -161,6 +161,29 @@ namespace Console_App_RudyVip
             }
             return price;
         }
+        public DataTable loadingCars(List<String> tempCarList )
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("Brand", typeof(String)));
+            dt.Columns.Add(new DataColumn("Model", typeof(String)));
+            dt.Columns.Add(new DataColumn("Color", typeof(String)));
+            dt.Columns.Add(new DataColumn("Price", typeof(String)));
+
+            foreach (var item in tempCarList)
+            {
+                DataRow nr = dt.NewRow();
+                String[] temp = item.Split("|");
+                nr[0] = Int32.Parse(temp[0]);
+                nr[1] = temp[1];
+                nr[2] = temp[2];
+                nr[3] = temp[3];
+                nr[4] = temp[4];
+
+                dt.Rows.Add(nr);
+            }
+            return dt;
+        }
         public Double GenerateDiscount(Double excl, int cs, int Count)
         {
             Double Discount = 0;
@@ -199,6 +222,10 @@ namespace Console_App_RudyVip
             TempReservation.Discount = Discount;
             TempReservation.DeliverAdress = DeliverInput;
             TempReservation.Categorie = cmbSelect;
+            TempReservation.Discount = 0;
+            TempReservation.OverHours = 0;
+            TempReservation.OverHoursPriceTotal = 0;
+            uow.reservationCarsRepository.RemoveCustomerCarByID(TempReservation.ID);
 
             uow.Complete();
         }

@@ -78,21 +78,6 @@ namespace WPF_RudyVip
                 MessageBox.Show("Give Valid Time");
             }
         }
-        private void AddReservationButton_Click(object sender, RoutedEventArgs e)
-        {
-            DateTime StartDate = DatePick.SelectedDate.Value.Add(TimeSpan.Parse(StartTime.SelectedItem.ToString()));
-            DateTime EndDate = DatePick.SelectedDate.Value.Add(TimeSpan.Parse(Endtime.SelectedItem.ToString()));
-
-            if (StartDate.Hour > EndDate.Hour)
-                EndDate = EndDate.AddDays(1);
-
-            int TotalTime = (int)(EndDate - StartDate).Hours;
-
-            if (StartDate > DateTime.Now)
-                MessageBox.Show((TotalTime * 50).ToString());
-            else
-                MessageBox.Show("Cannot book the past");
-        }
         private int HourCalculate(String H)
         {
             int hour;
@@ -249,7 +234,7 @@ namespace WPF_RudyVip
 
                         var TempReservation = h.GetReservation(Int32.Parse(Reservation_ID_Label.Content.ToString()));
                         h.UpdateReservation(TempReservation, StreetInput.Text.ToUpper(), CityInput.Text.ToUpper(), StartChooseDate, EndChooseDate, InclPrice, ExclPrice, Discount, DeliverInput.SelectedValue.ToString().ToUpper().Replace("SYSTEM.WINDOWS.CONTROLS.COMBOBOXITEM:", "").Trim(), cmbSelect.SelectedValue.ToString().ToUpper().Replace("SYSTEM.WINDOWS.CONTROLS.COMBOBOXITEM:", "").Trim(), c.GetCustomer(Int32.Parse(IDInpt.SelectedItem.ToString().Trim().Split("_")[0])));
-                       
+                        
                         foreach (var item in tempCarList)
                             Rcm.AddReservationCars(TempReservation.ID, Int32.Parse(item.Split("|")[0]), cs.ID);
 
@@ -448,7 +433,7 @@ namespace WPF_RudyVip
                 Car carTemp = m.GetCar(Int32.Parse(ColorInput.SelectedItem.ToString().ToUpper().Split(" ->")[0].Trim()));
                 String Type = cmbSelect.SelectedItem.ToString().ToUpper().Replace("SYSTEM.WINDOWS.CONTROLS.COMBOBOXITEM:", "").Trim();
 
-                ExclPrice += h.LoadPriceMethod(endTime, startTime,carTemp,Type);
+                ExclPrice = h.LoadPriceMethod(endTime, startTime,carTemp,Type);
             }
             else
                 exclTaxPrice.Content = "€ 0.00";
@@ -462,6 +447,7 @@ namespace WPF_RudyVip
 
                 Car tempcar = h.GetCar(Int32.Parse(ColorInput.SelectedItem.ToString().ToUpper().Split(" ->")[0].Trim()));
                 LoadPriceMethod();
+
 
                 List<int> IDs = new List<int>();
                 if (CarGrid.Items.Count > 0)
@@ -485,26 +471,7 @@ namespace WPF_RudyVip
         }
         private void loadingCars()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("ID", typeof(int)));
-            dt.Columns.Add(new DataColumn("Brand", typeof(String)));
-            dt.Columns.Add(new DataColumn("Model", typeof(String)));
-            dt.Columns.Add(new DataColumn("Color", typeof(String)));
-            dt.Columns.Add(new DataColumn("Price", typeof(String)));
-
-            foreach (var item in tempCarList)
-            {
-                DataRow nr = dt.NewRow();
-                String[] temp = item.Split("|");
-                nr[0] = Int32.Parse(temp[0]);
-                nr[1] = temp[1];
-                nr[2] = temp[2];
-                nr[3] = temp[3];
-                nr[4] = temp[4];
-
-                dt.Rows.Add(nr);
-            }
-            CarGrid.ItemsSource = dt.DefaultView;
+            CarGrid.ItemsSource = new ReservationManager(new UnitOfWork(new CarContext())).loadingCars(tempCarList).DefaultView;
         }
         private void Delete_Car(object sender, RoutedEventArgs e)
         {
@@ -652,7 +619,5 @@ namespace WPF_RudyVip
         {
             loadingCars();
         }
-
-        
     }
 }
