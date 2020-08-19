@@ -305,7 +305,6 @@ namespace WPF_RudyVip
                 CustomerManager c = new CustomerManager(new UnitOfWork(new CarContext()));
                 if (IDInpt.Items.Count != 0)
                 {
-
                     String[] tempSplit = IDInpt.SelectedItem.ToString().Trim().Split("_");
                     var temp = c.GetCustomer(Int32.Parse(tempSplit[0]));
                     if (temp.Categorie.ToString().ToLower().Equals("organisation") ||
@@ -371,7 +370,6 @@ namespace WPF_RudyVip
             ReservationCarsManager Rcm = new ReservationCarsManager(new UnitOfWork(new CarContext()));
             if (AddBtn.Content.ToString().StartsWith("A"))
             {
-
                 if ((DataRowView)ReservationGrid.SelectedItem != null)
                 {
                     AddBtn.Content = "Update Reservation";

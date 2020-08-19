@@ -36,9 +36,7 @@ namespace Console_App_RudyVip
         public void RemoveAllReservation(List<int> IDS)
         {
             foreach (var item in IDS)
-            {
                 uow.reservationsRepository.RemoveReservationByID(item);
-            }
             uow.Complete();
         }
         public void Save()
@@ -84,7 +82,6 @@ namespace Console_App_RudyVip
 
             return True;
         }
-
         public Double LoadOverhourPrice(int CarId, int ResID, int hours, DateTime End)
         {
             var tempRes = uow.reservationsRepository.FindReservation(ResID);
@@ -135,20 +132,11 @@ namespace Console_App_RudyVip
             }
 
             if (Type == "WEDDING")
-            {
-                price = carTemp.WeddingPrice;
-                price = price + (nightHours * (carTemp.FirstHourPrice * 1.4));
-            }
+                price = carTemp.WeddingPrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
             else if (Type == "NIGHTLIFE")
-            {
-                price = carTemp.NightlifePrice;
-                price = price + (nightHours * (carTemp.FirstHourPrice * 1.4));
-            }
+                price = carTemp.NightlifePrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
             else if (Type == "WELLNESS")
-            {
-                price = carTemp.WeddingPrice;
-                price = price + (nightHours * (carTemp.FirstHourPrice * 1.4));
-            }
+                price = carTemp.WeddingPrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
             else if (Type == "AIRPORT")
             {
                 price = ((normalHours - 1) * (carTemp.FirstHourPrice * 0.65)) + carTemp.FirstHourPrice;
