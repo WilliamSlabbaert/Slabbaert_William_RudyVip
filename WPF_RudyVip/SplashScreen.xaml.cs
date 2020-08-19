@@ -18,13 +18,13 @@ namespace WPF_RudyVip
     /// </summary>
     public partial class SplashScreen : Window
     {
-        DispatcherTimer dt = new DispatcherTimer();
+        DispatcherTimer DT = new DispatcherTimer();
         public SplashScreen()
         {
             InitializeComponent();
-            dt.Tick += new EventHandler(Dt_tick);
-            dt.Interval = new TimeSpan(0, 0, 5);
-            dt.Start();
+            DT.Tick += new EventHandler(Dt_tick);
+            DT.Interval = new TimeSpan(0, 0, 7);
+            DT.Start();
         }
         private void Dt_tick(object sender,EventArgs e)
         {
@@ -32,8 +32,7 @@ namespace WPF_RudyVip
             x.Show();
             x.Close();
             new MainWindow().Show();
-            dt.Stop();
-
+            DT.Stop();
             this.Close();
         }
     }

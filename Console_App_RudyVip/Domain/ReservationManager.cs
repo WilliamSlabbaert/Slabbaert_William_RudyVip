@@ -134,7 +134,12 @@ namespace Console_App_RudyVip
             if (Type == "WEDDING")
                 price = carTemp.WeddingPrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
             else if (Type == "NIGHTLIFE")
-                price = carTemp.NightlifePrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
+            {
+                if(normalHours != 0)
+                    price = carTemp.NightlifePrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
+                else
+                    price = nightHours * (carTemp.FirstHourPrice * 1.4);
+            }
             else if (Type == "WELLNESS")
                 price = carTemp.WeddingPrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
             else if (Type == "AIRPORT")

@@ -34,7 +34,7 @@
         </Rectangle>
 
         <TextBlock Margin="130,95,30,95" Text="Rudy VIP Service" FontWeight="Bold" FontSize="40" />
-        <TextBlock Margin="133,150,275,70" Text="Loading...." FontWeight="Bold" FontSize="15" Foreground="#FF5D5D5D" />
+        <TextBlock Name="LoadingLabel" Margin="133,150,275,70" Text="Loading...." FontWeight="Bold" FontSize="15" Foreground="#FF5D5D5D" />
         <TextBlock Margin="170,225,170,10" Text="Copyright © William Slabbaert" FontSize="10" Foreground="Black" />
     </Grid>
 </Window>
