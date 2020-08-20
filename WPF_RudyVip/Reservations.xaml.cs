@@ -178,7 +178,7 @@ namespace WPF_RudyVip
                             ExclPrice = Math.Round(ExclPrice, 2);
                             var cs = c.GetCustomer(Int32.Parse(IDInpt.SelectedItem.ToString().Trim().Split("_")[0]));
                             cs.ID = Int32.Parse(IDInpt.SelectedItem.ToString().Trim().Split("_")[0]);
-                            Double Discount = Math.Round(h.GenerateDiscount(ExclPrice, cs.ID, CarGrid.Items.Count), 2);
+                            Double Discount = Math.Round(h.GenerateDiscount(ExclPrice, cs.ID, CarGrid.Items.Count, StartChooseDate.Year), 2);
 
                             InclPrice = ExclPrice - Discount;
                             InclPrice = InclPrice + (InclPrice * 0.06);
@@ -225,7 +225,7 @@ namespace WPF_RudyVip
                             ExclPrice += Double.Parse(Row[4].ToString().Trim());
                         }
                         var cs = c.GetCustomer(Int32.Parse(IDInpt.SelectedItem.ToString().Trim().Split("_")[0]));
-                        Double Discount = Math.Round(h.GenerateDiscount(ExclPrice, cs.ID, CarGrid.Items.Count), 2,StartChooseDate.Year);
+                        Double Discount = Math.Round(h.GenerateDiscount(ExclPrice, cs.ID, CarGrid.Items.Count,StartChooseDate.Year), 2);
 
                         InclPrice = ExclPrice - Discount;
                         InclPrice = InclPrice + (InclPrice * 0.06);
@@ -491,13 +491,14 @@ namespace WPF_RudyVip
             double TotalPrice = 0;
             CustomerManager c = new CustomerManager(new UnitOfWork(new CarContext()));
             ReservationManager h = new ReservationManager(new UnitOfWork(new CarContext()));
+            DateTime StartChooseDate = DatePick.SelectedDate.Value.Add(TimeSpan.Parse(StartTime.SelectedItem.ToString()));
             foreach (var item in CarGrid.Items)
             {
                 DataRowView dataRowView = (DataRowView)item;
                 TotalPrice += Double.Parse(dataRowView.Row[4].ToString());
             }
             var temp = c.GetCustomer(Int32.Parse(IDInpt.SelectedItem.ToString().Trim().Split("_")[0]));
-            Double discount = h.GenerateDiscount(TotalPrice, temp.ID, CarGrid.Items.Count);
+            Double discount = h.GenerateDiscount(TotalPrice, temp.ID, CarGrid.Items.Count, StartChooseDate.Year);
 
 
             TotalPrice = TotalPrice - discount;
