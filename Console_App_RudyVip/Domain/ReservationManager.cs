@@ -135,7 +135,7 @@ namespace Console_App_RudyVip
                 price = carTemp.WeddingPrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
             else if (Type == "NIGHTLIFE")
             {
-                if(normalHours != 0)
+                if (normalHours != 0)
                     price = carTemp.NightlifePrice + (nightHours * (carTemp.FirstHourPrice * 1.4));
                 else
                     price = nightHours * (carTemp.FirstHourPrice * 1.4);
@@ -154,7 +154,7 @@ namespace Console_App_RudyVip
             }
             return price;
         }
-        public DataTable loadingCars(List<String> tempCarList )
+        public DataTable loadingCars(List<String> tempCarList)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("ID", typeof(int)));
@@ -177,31 +177,45 @@ namespace Console_App_RudyVip
             }
             return dt;
         }
-        public Double GenerateDiscount(Double excl, int cs, int Count)
+        public Double GenerateDiscount(Double excl, int cs, int Count, int year)
         {
             Double Discount = 0;
             var tempCS = uow.customerRepository.FindCustomer(cs);
+
+            List<int> resList = uow.reservationsRepository.FindAllReservation().FindAll(c => c.StartDate.Year == year).Select(s => s.ID).ToList();
+
+            HashSet<int> resCars = new HashSet<int>();
+
+            foreach (var item in uow.reservationCarsRepository.FindAllCustomerCars().FindAll(c => c.customerID.Equals(cs)).ToList())
+                if (resList.Contains(item.reservationID))
+                    resCars.Add(item.reservationID);
+            
+            if (resCars.Count >= 3)
+                Discount = excl * 0.05;
+            else if (resCars.Count >= 8)
+                Discount = excl * 0.075;
+
             if (tempCS.Categorie.ToUpper().Trim().Equals("VIP"))
             {
                 if (Count >= 2)
-                    Discount = excl * 0.05;
+                    Discount += excl * 0.05;
                 else if (Count >= 7)
-                    Discount = excl * 0.075;
+                    Discount += excl * 0.075;
                 else if (Count >= 15)
-                    Discount = excl * 0.1;
+                    Discount += excl * 0.1;
             }
             else if (tempCS.Categorie.ToUpper().Equals("MARRIAGE PLANNER"))
             {
                 if (Count >= 5)
-                    Discount = excl * 0.075;
+                    Discount += excl * 0.075;
                 else if (Count >= 10)
-                    Discount = excl * 0.1;
+                    Discount += excl * 0.1;
                 else if (Count >= 15)
-                    Discount = excl * 0.125;
+                    Discount += excl * 0.125;
                 else if (Count >= 20)
-                    Discount = excl * 0.15;
+                    Discount += excl * 0.15;
                 else if (Count >= 25)
-                    Discount = excl * 0.25;
+                    Discount += excl * 0.25;
             }
             return Discount;
         }

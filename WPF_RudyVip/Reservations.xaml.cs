@@ -225,7 +225,7 @@ namespace WPF_RudyVip
                             ExclPrice += Double.Parse(Row[4].ToString().Trim());
                         }
                         var cs = c.GetCustomer(Int32.Parse(IDInpt.SelectedItem.ToString().Trim().Split("_")[0]));
-                        Double Discount = Math.Round(h.GenerateDiscount(ExclPrice, cs.ID, CarGrid.Items.Count), 2);
+                        Double Discount = Math.Round(h.GenerateDiscount(ExclPrice, cs.ID, CarGrid.Items.Count), 2,StartChooseDate.Year);
 
                         InclPrice = ExclPrice - Discount;
                         InclPrice = InclPrice + (InclPrice * 0.06);
