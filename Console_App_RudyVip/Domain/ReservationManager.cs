@@ -190,9 +190,9 @@ namespace Console_App_RudyVip
                 if (resList.Contains(item.reservationID))
                     resCars.Add(item.reservationID);
             
-            if (resCars.Count >= 3)
+            if (resCars.Count >= 2)
                 Discount = excl * 0.05;
-            else if (resCars.Count >= 8)
+            else if (resCars.Count >= 7)
                 Discount = excl * 0.075;
 
             if (tempCS.Categorie.ToUpper().Trim().Equals("VIP"))
